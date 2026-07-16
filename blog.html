@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MVDigitalAgency Blog — Digital marketing insights, SEO guides, Google Ads tips, social media strategy, website design ideas, and business growth resources." />
+  <meta name="keywords" content="digital marketing blog, SEO tips, Google Ads, social media marketing, website design, content marketing, PPC" />
+  <title>MVDigitalAgency Blog | Digital Marketing Insights & Growth Guides</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- AOS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
+<style>
+    :root {
+      --primary: #2563EB;
+      --secondary: #7C3AED;
+      --accent: #06B6D4;
+      --bg: #0F172A;
+      --card: #1E293B;
+      --text: #FFFFFF;
+      --text-muted: #CBD5E1;
+      --gradient: linear-gradient(135deg, #2563EB, #7C3AED);
+      --gradient-2: linear-gradient(135deg, #7C3AED, #06B6D4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; transition: opacity .6s ease, visibility .6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-ring {
+      width: 70px; height: 70px;
+      border: 4px solid rgba(37,99,235,.2);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== NAVBAR ===== */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 16px 0;
+      transition: all .4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(15,23,42,.95);
+      backdrop-filter: blur(20px);
+      padding: 10px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,.4);
+      border-bottom: 1px solid rgba(37,99,235,.15);
+    }
+    .navbar-logo { height: 80px; width: 210px; object-fit: contain; }
+    .nav-link {
+      color: var(--text-muted) !important; font-weight: 500;
+      font-size: .9rem; transition: color .3s; position: relative; padding: 6px 14px !important;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; right: 50%;
+      height: 2px; background: var(--gradient); transition: left .3s, right .3s;
+    }
+    .nav-link:hover::after, .nav-link.active::after { left: 14px; right: 14px; }
+    .nav-link:hover, .nav-link.active { color: var(--text) !important; }
+    .btn-nav {
+      background: var(--gradient); color: #fff !important;
+      border-radius: 50px; padding: 8px 22px !important;
+      font-weight: 600; font-size: .85rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,.5); }
+    .menu-toggle {
+      width: 44px; height: 44px; border: 1px solid rgba(37,99,235,.25);
+      background: rgba(30,41,59,.65); border-radius: 12px;
+      display: none; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.2rem;
+    }
+	 /* Navbar */
+.navbar ul{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+.navbar ul li{
+    position:relative;
+}
+
+.navbar ul li a{
+    text-decoration:none;
+    color:#000;
+    padding:10px 15px;
+    display:block;
+}
+
+/* Navbar */
+.navbar {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    padding: 10px;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #0F172A;
+    list-style: none;
+    min-width: 220px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    padding: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 12px 15px;
+}
+
+.dropdown-menu li a:hover {
+    background: #007bff;
+    color: white;
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+
+    /* ===== SHARED ===== */
+    .btn-primary-custom {
+      background: var(--gradient); color: #fff; border: none;
+      border-radius: 50px; padding: 14px 32px; font-weight: 600;
+      font-size: 1rem; cursor: pointer; transition: all .3s;
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; position: relative; overflow: hidden;
+    }
+    .btn-primary-custom::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, #7C3AED, #2563EB);
+      opacity: 0; transition: opacity .3s;
+    }
+    .btn-primary-custom:hover::before { opacity: 1; }
+    .btn-primary-custom:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(37,99,235,.5); color: #fff; }
+    .btn-primary-custom span, .btn-primary-custom i { position: relative; z-index: 1; }
+
+    .btn-outline-custom {
+      background: transparent; color: var(--text); border: 2px solid rgba(37,99,235,.6);
+      border-radius: 50px; padding: 12px 30px; font-weight: 600;
+      font-size: 1rem; cursor: pointer; transition: all .3s;
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    }
+    .btn-outline-custom:hover {
+      background: var(--gradient); border-color: transparent;
+      transform: translateY(-3px); color: #fff;
+      box-shadow: 0 12px 35px rgba(37,99,235,.4);
+    }
+    .section-badge {
+      display: inline-block; background: rgba(37,99,235,.15);
+      border: 1px solid rgba(37,99,235,.3); color: var(--accent);
+      padding: 6px 18px; border-radius: 50px; font-size: .8rem;
+      font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .section-desc { color: var(--text-muted); font-size: 1.05rem; max-width: 680px; margin: 0 auto; line-height: 1.8; }
+    .section-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(37,99,235,.4), transparent); margin: 0; }
+
+    /* ===== BLOG HERO ===== */
+    #blogHero {
+      min-height: 72vh; display: flex; align-items: center;
+      position: relative; overflow: hidden; padding: 150px 0 90px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,.2) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(124,58,237,.2) 0%, transparent 60%),
+                  radial-gradient(ellipse at 60% 80%, rgba(6,182,212,.1) 0%, transparent 60%),
+                  var(--bg);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: .07;
+      background-image: linear-gradient(rgba(37,99,235,.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(37,99,235,.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-particles { position: absolute; inset: 0; }
+    .particle { position: absolute; border-radius: 50%; animation: float-particle linear infinite; opacity: .6; }
+    @keyframes float-particle {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: .6; }
+      90% { opacity: .6; }
+      100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+    }
+    .blog-hero-title {
+      font-size: clamp(2.3rem, 6vw, 5rem); font-weight: 900; line-height: 1.05;
+      letter-spacing: -1.5px; margin-bottom: 22px;
+    }
+    .blog-hero-sub { color: var(--text-muted); font-size: 1.08rem; line-height: 1.85; max-width: 760px; margin: 0 auto 34px; }
+    .blog-search-wrap {
+      max-width: 720px; margin: 34px auto 0;
+      background: rgba(30,41,59,.78); border: 1px solid rgba(37,99,235,.22);
+      border-radius: 999px; padding: 8px; display: flex; align-items: center;
+      backdrop-filter: blur(16px); box-shadow: 0 20px 70px rgba(0,0,0,.25);
+    }
+    .blog-search-wrap i { color: var(--accent); margin-left: 18px; }
+    .blog-search-wrap input {
+      flex: 1; background: transparent; border: none; outline: none;
+      color: var(--text); padding: 12px 18px; font-family: inherit;
+    }
+    .blog-search-wrap input::placeholder { color: rgba(203,213,225,.55); }
+
+    /* ===== FEATURED BLOG ===== */
+    #featuredBlog { padding: 90px 0; }
+    .featured-card {
+      background: rgba(30,41,59,.72); border: 1px solid rgba(37,99,235,.15);
+      border-radius: 28px; overflow: hidden; backdrop-filter: blur(14px);
+      box-shadow: 0 24px 80px rgba(0,0,0,.18); transition: all .35s ease;
+    }
+    .featured-card:hover { transform: translateY(-6px); border-color: rgba(37,99,235,.35); box-shadow: 0 28px 90px rgba(37,99,235,.16); }
+    .featured-img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; }
+    .featured-content { padding: 44px 40px; }
+    .post-meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 18px; color: var(--text-muted); font-size: .82rem; }
+    .post-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--accent); background: rgba(6,182,212,.10);
+      border: 1px solid rgba(6,182,212,.18); padding: 6px 12px; border-radius: 999px;
+      font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .7px;
+    }
+    .featured-title { font-size: clamp(1.7rem, 3vw, 2.65rem); font-weight: 850; line-height: 1.15; margin-bottom: 18px; }
+    .featured-excerpt { color: var(--text-muted); line-height: 1.85; font-size: .98rem; margin-bottom: 26px; }
+    .author-row { display: flex; align-items: center; gap: 12px; margin-top: 26px; }
+    .author-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(37,99,235,.7); }
+    .author-name { font-weight: 700; font-size: .9rem; }
+    .author-role { color: var(--text-muted); font-size: .76rem; }
+
+    /* ===== BLOG LIST ===== */
+    #blogList { padding: 90px 0; background: rgba(30,41,59,.3); }
+    .category-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 32px 0 42px; }
+    .cat-pill {
+      background: rgba(30,41,59,.75); border: 1px solid rgba(37,99,235,.18);
+      color: var(--text-muted); padding: 9px 20px; border-radius: 999px;
+      font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .3s;
+    }
+    .cat-pill.active, .cat-pill:hover { background: var(--gradient); color: #fff; border-color: transparent; box-shadow: 0 8px 26px rgba(37,99,235,.34); }
+    .blog-card {
+      height: 100%; background: rgba(30,41,59,.72); border: 1px solid rgba(37,99,235,.12);
+      border-radius: 22px; overflow: hidden; backdrop-filter: blur(12px); transition: all .35s;
+    }
+    .blog-card:hover { transform: translateY(-8px); border-color: rgba(37,99,235,.35); box-shadow: 0 22px 70px rgba(37,99,235,.14); }
+    .blog-img-wrap { position: relative; overflow: hidden; aspect-ratio: 16/10; }
+    .blog-img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s; }
+    .blog-card:hover .blog-img { transform: scale(1.07); }
+    .floating-tag { position: absolute; top: 16px; left: 16px; }
+    .blog-body { padding: 26px 24px 28px; }
+    .blog-title { color: var(--text); font-size: 1.12rem; font-weight: 750; line-height: 1.35; margin-bottom: 12px; transition: color .3s; }
+    .blog-card:hover .blog-title { color: var(--accent); }
+    .blog-excerpt { color: var(--text-muted); font-size: .88rem; line-height: 1.75; margin-bottom: 18px; }
+    .read-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 700; font-size: .88rem; transition: gap .3s, color .3s; }
+    .read-link:hover { gap: 12px; color: var(--accent); }
+
+    /* ===== SIDEBAR / RESOURCES ===== */
+    #resources { padding: 90px 0; }
+    .resource-card, .newsletter-card {
+      background: rgba(30,41,59,.72); border: 1px solid rgba(37,99,235,.14);
+      border-radius: 22px; padding: 28px; height: 100%; backdrop-filter: blur(12px);
+    }
+    .resource-title { font-weight: 800; font-size: 1.2rem; margin-bottom: 18px; }
+    .trend-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .trend-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .trend-num {
+      width: 36px; height: 36px; border-radius: 12px; background: rgba(37,99,235,.16);
+      border: 1px solid rgba(37,99,235,.22); display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-weight: 800; flex-shrink: 0;
+    }
+    .trend-title { color: var(--text); font-size: .92rem; font-weight: 700; line-height: 1.45; }
+    .trend-meta { color: var(--text-muted); font-size: .76rem; margin-top: 5px; }
+    .newsletter-card {
+      background: linear-gradient(135deg, rgba(37,99,235,.18), rgba(124,58,237,.16)), rgba(30,41,59,.72);
+      position: relative; overflow: hidden;
+    }
+    .newsletter-card::after {
+      content: ''; position: absolute; width: 240px; height: 240px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,.18), transparent 70%);
+      right: -80px; top: -80px;
+    }
+    .newsletter-card > * { position: relative; z-index: 1; }
+    .newsletter-input-row { display: flex; gap: 10px; margin-top: 24px; }
+    .newsletter-input-row input {
+      flex: 1; background: rgba(15,23,42,.75); border: 1px solid rgba(37,99,235,.22);
+      border-radius: 12px; padding: 13px 16px; color: var(--text); outline: none; font-family: inherit;
+    }
+
+    /* ===== CTA ===== */
+    #blogCta { padding: 90px 0; background: rgba(30,41,59,.3); }
+    .cta-card {
+      background: linear-gradient(135deg, rgba(37,99,235,.20), rgba(124,58,237,.18)), rgba(30,41,59,.72);
+      border: 1px solid rgba(37,99,235,.20); border-radius: 30px;
+      padding: 56px 38px; text-align: center; backdrop-filter: blur(16px);
+      position: relative; overflow: hidden;
+    }
+    .cta-card::before {
+      content: ''; position: absolute; inset: -1px;
+      background: radial-gradient(circle at 20% 30%, rgba(6,182,212,.16), transparent 35%), radial-gradient(circle at 80% 70%, rgba(124,58,237,.18), transparent 35%);
+      pointer-events: none;
+    }
+    .cta-card > * { position: relative; z-index: 1; }
+
+    /* ===== FOOTER ===== */
+    footer { background: rgba(15,23,42,.95); border-top: 1px solid rgba(37,99,235,.1); padding: 80px 0 0; }
+    .footer-brand { font-size: 1.6rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+    .footer-desc { font-size: .87rem; color: var(--text-muted); line-height: 1.8; max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+    .footer-social a { width: 38px; height: 38px; border-radius: 50%; background: rgba(37,99,235,.15); border: 1px solid rgba(37,99,235,.2); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: .9rem; transition: all .3s; text-decoration: none; }
+    .footer-social a:hover { background: var(--gradient); color: #fff; border-color: transparent; transform: translateY(-3px); }
+    .footer-heading { font-weight: 700; font-size: 1rem; margin-bottom: 20px; color: var(--text); }
+    .footer-links { list-style: none; padding-left: 0; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: .87rem; transition: color .3s; display: flex; align-items: center; gap: 8px; }
+    .footer-links a::before { content: '›'; color: var(--primary); font-size: 1.1rem; }
+    .footer-links a:hover { color: var(--text); }
+    .contact-info-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
+    .ci-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .ci-label { font-size: .76rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .ci-value { font-weight: 600; font-size: .9rem; color: var(--text); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.05); padding: 20px 0; margin-top: 60px; text-align: center; }
+    .footer-bottom p { font-size: .83rem; color: var(--text-muted); margin: 0; }
+    .footer-bottom span { color: #EF4444; }
+    .footer-bottom a { color: var(--accent); text-decoration: none; }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .whatsapp-btn { position: fixed; bottom: 90px; right: 24px; z-index: 900; width: 54px; height: 54px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.5rem; text-decoration: none; box-shadow: 0 6px 25px rgba(37,211,102,.5); transition: all .3s; animation: wa-pulse 2s ease-in-out infinite; }
+    .whatsapp-btn:hover { transform: scale(1.1); color: #fff; box-shadow: 0 8px 35px rgba(37,211,102,.7); }
+    @keyframes wa-pulse { 0%, 100% { box-shadow: 0 6px 25px rgba(37,211,102,.5); } 50% { box-shadow: 0 6px 35px rgba(37,211,102,.8); } }
+    #backToTop { position: fixed; bottom: 24px; right: 24px; z-index: 900; width: 54px; height: 54px; border-radius: 50%; background: var(--gradient); border: none; color: #fff; font-size: 1.2rem; cursor: pointer; box-shadow: 0 6px 25px rgba(37,99,235,.5); transition: all .3s; opacity: 0; visibility: hidden; }
+    #backToTop.visible { opacity: 1; visibility: visible; }
+    #backToTop:hover { transform: translateY(-4px); box-shadow: 0 10px 35px rgba(37,99,235,.7); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 991px) {
+      .menu-toggle { display: flex; }
+      .featured-img { min-height: 320px; }
+      .featured-content { padding: 34px 28px; }
+      #blogHero { min-height: 66vh; padding-top: 140px; }
+    }
+    @media (max-width: 767px) {
+      .navbar-logo { height: 68px; width: 180px; }
+      .blog-search-wrap { border-radius: 24px; flex-direction: column; align-items: stretch; padding: 14px; }
+      .blog-search-wrap i { display: none; }
+      .blog-search-wrap input { padding: 10px 12px; text-align: center; }
+      .newsletter-input-row { flex-direction: column; }
+      .cta-card { padding: 42px 24px; }
+      .featured-img { min-height: 260px; }
+    }
+  </style>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "MVDigitalAgency Blog",
+    "description": "Digital marketing insights, SEO guides, Google Ads tips, and business growth resources.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "MVDigitalAgency"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div>
+    <div class="loader-ring"></div>
+    <p style="text-align:center;margin-top:14px;font-size:.8rem;color:var(--text-muted);">Loading...</p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#hero" class="navbar-brand"><img src="img/logo.png" style="height: 100px; width: 240px;" class="navbar-logo"></a>
+      <div class="d-none d-lg-flex align-items-center gap-1">
+		  <a href="index.html" class="nav-link">Home</a>
+        <a href="about-us.html" class="nav-link">About</a>
+		 <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        
+        <a href="mailto:hello@mvdigitalagency.com" class="nav-link btn-nav ms-2">Get Free Consultant</a>
+      </div>
+      
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" style="max-height:0;overflow:hidden;transition:max-height .4s ease;">
+      <div style="padding:20px 0;display:flex;flex-direction:column;gap:4px;border-top:1px solid rgba(37,99,235,.1);margin-top:12px;">
+		<a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+        <a href="about-us.html" class="nav-link" onclick="closeMenu()">About</a>
+       
+        <a href="blog.html" class="nav-link" onclick="closeMenu()">Blog</a>
+        <a href="contact-us.html" class="nav-link" onclick="closeMenu()">Contact Us</a>
+        <a href="mailto:hello@mvdigitalagency.com" class="btn-primary-custom mt-2" onclick="closeMenu()" style="text-align:center;justify-content:center;"><span>Get Free Consultant</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- BLOG HERO -->
+<section id="blogHero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="text-center" data-aos="fade-up">
+      <div class="section-badge">Marketing Knowledge Hub</div>
+      <h1 class="blog-hero-title">Latest <span class="gradient-text">Digital Marketing</span><br>Insights & Growth Ideas</h1>
+      <p class="blog-hero-sub">Read practical guides on SEO, paid ads, social media, content, website design, and conversion strategy. Built for business owners who want clear actions, not confusing theory.</p>
+      <div class="blog-search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="blogSearch" placeholder="Search articles by SEO, Google Ads, social media, website design..." oninput="filterPosts()">
+        <a href="#blogList" class="btn-primary-custom"><span>Explore</span><i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FEATURED BLOG -->
+<section id="featuredBlog">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-badge">Featured Article</div>
+      <h2 class="section-title">Start With the Strategy That <span class="gradient-text">Moves Revenue</span></h2>
+      <p class="section-desc">A strong digital presence is not about posting everywhere. It is about building a system that attracts, converts, and retains the right customers.</p>
+    </div>
+
+    <div class="featured-card" data-aos="fade-up">
+      <div class="row g-0 align-items-stretch">
+        <div class="col-lg-6">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1100&q=80&fit=crop" alt="Digital marketing strategy dashboard" class="featured-img">
+        </div>
+        <div class="col-lg-6">
+          <div class="featured-content">
+            <div class="post-meta">
+              <span class="post-tag"><i class="fas fa-chart-line"></i> Strategy</span>
+              <span><i class="far fa-calendar"></i> June 28, 2026</span>
+              <span><i class="far fa-clock"></i> 7 min read</span>
+            </div>
+            <h3 class="featured-title">How to Build a Digital Marketing System That Brings Consistent Leads</h3>
+            <p class="featured-excerpt">Most businesses do random marketing. One day SEO, next day ads, then social media. The real growth starts when every channel works like one connected machine. This guide explains how to build that system step by step.</p>
+            <a href="#" class="btn-primary-custom"><span>Read Featured Blog</span><i class="fas fa-arrow-right"></i></a>
+            <div class="author-row">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&fit=crop" alt="Author" class="author-avatar">
+              <div>
+                <div class="author-name">MVDigitalAgency Team</div>
+                <div class="author-role">Growth Strategy & Performance Marketing</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BLOG LIST -->
+<section id="blogList">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <div class="section-badge">News & Updates</div>
+      <h2 class="section-title">Latest <span class="gradient-text">Blog Articles</span></h2>
+      <p class="section-desc">Fresh ideas, practical strategies, and simple marketing breakdowns to help your business grow online.</p>
+    </div>
+
+    <div class="category-pills" data-aos="fade-up" data-aos-delay="100">
+      <button class="cat-pill active" data-filter="all" onclick="setCategory(this)">All</button>
+      <button class="cat-pill" data-filter="SEO" onclick="setCategory(this)">SEO</button>
+      <button class="cat-pill" data-filter="PPC" onclick="setCategory(this)">Google Ads</button>
+      <button class="cat-pill" data-filter="Social" onclick="setCategory(this)">Social Media</button>
+      <button class="cat-pill" data-filter="Web" onclick="setCategory(this)">Web Design</button>
+      <button class="cat-pill" data-filter="Content" onclick="setCategory(this)">Content</button>
+    </div>
+
+    <div class="row g-4" id="postsGrid">
+      <div class="col-lg-4 col-md-6 blog-post" data-category="SEO" data-title="local seo google ranking business near me">
+        <article class="blog-card" data-aos="fade-up">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=800&q=80&fit=crop" alt="SEO strategy" class="blog-img">
+            <span class="post-tag floating-tag">SEO</span>
+          </div>
+          <div class="blog-body">
+            <div class="post-meta"><span><i class="far fa-calendar"></i> Jun 22, 2026</span><span><i class="far fa-clock"></i> 6 min read</span></div>
+            <a href="#"><h3 class="blog-title">Local SEO Checklist for Businesses That Want More Calls and Store Visits</h3></a>
+            <p class="blog-excerpt">A simple checklist to improve local visibility, optimize your Google Business Profile, and attract nearby customers.</p>
+            <a href="#" class="read-link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4 col-md-6 blog-post" data-category="PPC" data-title="google ads ppc conversion tracking landing page">
+        <article class="blog-card" data-aos="fade-up" data-aos-delay="80">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&fit=crop" alt="Google Ads analytics" class="blog-img">
+            <span class="post-tag floating-tag">Google Ads</span>
+          </div>
+          <div class="blog-body">
+            <div class="post-meta"><span><i class="far fa-calendar"></i> Jun 18, 2026</span><span><i class="far fa-clock"></i> 8 min read</span></div>
+            <a href="#"><h3 class="blog-title">Why Your Google Ads Are Getting Clicks But Not Converting Into Leads</h3></a>
+            <p class="blog-excerpt">Learn the common reasons campaigns waste budget and how to fix targeting, landing pages, and conversion tracking.</p>
+            <a href="#" class="read-link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4 col-md-6 blog-post" data-category="Social" data-title="social media content calendar instagram facebook linkedin">
+        <article class="blog-card" data-aos="fade-up" data-aos-delay="160">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80&fit=crop" alt="Social media apps" class="blog-img">
+            <span class="post-tag floating-tag">Social Media</span>
+          </div>
+          <div class="blog-body">
+            <div class="post-meta"><span><i class="far fa-calendar"></i> Jun 14, 2026</span><span><i class="far fa-clock"></i> 5 min read</span></div>
+            <a href="#"><h3 class="blog-title">How to Create a Social Media Calendar That Builds Trust Every Week</h3></a>
+            <p class="blog-excerpt">A practical content planning system for brands that want consistency, engagement, and clear audience recall.</p>
+            <a href="#" class="read-link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4 col-md-6 blog-post" data-category="Web" data-title="website design conversion homepage landing page ux">
+        <article class="blog-card" data-aos="fade-up">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80&fit=crop" alt="Website design workspace" class="blog-img">
+            <span class="post-tag floating-tag">Web Design</span>
+          </div>
+          <div class="blog-body">
+            <div class="post-meta"><span><i class="far fa-calendar"></i> Jun 10, 2026</span><span><i class="far fa-clock"></i> 7 min read</span></div>
+            <a href="#"><h3 class="blog-title">7 Website Design Mistakes That Quietly Kill Your Conversion Rate</h3></a>
+            <p class="blog-excerpt">Your website may look beautiful, but small UX problems can stop visitors from becoming customers.</p>
+            <a href="#" class="read-link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4 col-md-6 blog-post" data-category="Content" data-title="content marketing blog seo authority lead generation">
+        <article class="blog-card" data-aos="fade-up" data-aos-delay="80">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80&fit=crop" alt="Content writing" class="blog-img">
+            <span class="post-tag floating-tag">Content</span>
+          </div>
+          <div class="blog-body">
+            <div class="post-meta"><span><i class="far fa-calendar"></i> Jun 05, 2026</span><span><i class="far fa-clock"></i> 6 min read</span></div>
+            <a href="#"><h3 class="blog-title">Content Marketing That Sells Without Sounding Like a Sales Pitch</h3></a>
+            <p class="blog-excerpt">Use education, storytelling, and proof to move prospects from awareness to confident buying decisions.</p>
+            <a href="#" class="read-link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4 col-md-6 blog-post" data-category="SEO" data-title="technical seo audit page speed schema indexing">
+        <article class="blog-card" data-aos="fade-up" data-aos-delay="160">
+          <div class="blog-img-wrap">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80&fit=crop" alt="Technical SEO audit" class="blog-img">
+            <span class="post-tag floating-tag">SEO</span>
+          </div>
+          <div class="blog-body">
+            <div class="post-meta"><span><i class="far fa-calendar"></i> May 30, 2026</span><span><i class="far fa-clock"></i> 9 min read</span></div>
+            <a href="#"><h3 class="blog-title">Technical SEO Basics Every Business Website Should Fix First</h3></a>
+            <p class="blog-excerpt">Speed, indexing, structure, internal linking, and schema fixes that help search engines understand your website.</p>
+            <a href="#" class="read-link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="mailto:hello@mvdigitalagency.com" class="btn-outline-custom"><span>Need a Custom Growth Plan?</span><i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RESOURCES -->
+<section id="resources">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="resource-card">
+          <div class="resource-title">Trending Topics</div>
+          <div class="trend-item">
+            <div class="trend-num">01</div>
+            <div>
+              <a href="#" class="trend-title">SEO vs Paid Ads: Which Should Your Business Start With?</a>
+              <div class="trend-meta">Marketing Strategy · 6 min read</div>
+            </div>
+          </div>
+          <div class="trend-item">
+            <div class="trend-num">02</div>
+            <div>
+              <a href="#" class="trend-title">How to Build a Landing Page That Converts Cold Traffic</a>
+              <div class="trend-meta">Web Design · 8 min read</div>
+            </div>
+          </div>
+          <div class="trend-item">
+            <div class="trend-num">03</div>
+            <div>
+              <a href="#" class="trend-title">The Simple Reporting Dashboard Every Business Owner Needs</a>
+              <div class="trend-meta">Analytics · 5 min read</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="newsletter-card">
+          <div class="section-badge">Weekly Growth Notes</div>
+          <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.3rem);">Get Smarter Marketing Ideas in Your Inbox</h2>
+          <p style="color:var(--text-muted);line-height:1.8;">Join our newsletter for practical marketing ideas, SEO tips, ad campaign breakdowns, and website conversion lessons.</p>
+          <form class="newsletter-input-row" onsubmit="event.preventDefault(); showNewsletterMessage();">
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+            <button class="btn-primary-custom" type="submit"><span>Subscribe</span><i class="fas fa-paper-plane"></i></button>
+          </form>
+          <p id="newsletterMsg" style="display:none;color:#34D399;margin-top:14px;font-size:.88rem;">Thank you. You are subscribed to weekly growth notes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CTA -->
+<section id="blogCta">
+  <div class="container">
+    <div class="cta-card" data-aos="zoom-in">
+      <div class="section-badge">Ready to Grow?</div>
+      <h2 class="section-title">Turn Marketing Knowledge Into <span class="gradient-text">Business Growth</span></h2>
+      <p class="section-desc" style="margin-bottom:30px;">Reading is useful. Execution creates results. Get a clear digital strategy built for your business goals, audience, and budget.</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="mailto:hello@mvdigitalagency.com" class="btn-primary-custom"><span>Get Free Consultation</span><i class="fas fa-arrow-right"></i></a>
+        <a href="index.html#services" class="btn-outline-custom"><span>Explore Services</span><i class="fas fa-layer-group"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">mvdigitalagency</div>
+        <div class="footer-desc">We help businesses grow with powerful, data-driven digital marketing strategies. Let's build something amazing together.</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="mailto:hello@mvdigitalagency.com">Email Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <div class="footer-heading">Our Services</div>
+        <ul class="footer-links">
+          <li><a href="index.html#services">SEO Optimization</a></li>
+          <li><a href="index.html#services">Google Ads</a></li>
+          <li><a href="index.html#services">Social Media</a></li>
+          <li><a href="index.html#services">Website Design</a></li>
+          <li><a href="index.html#services">Content Marketing</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div class="ci-label">Our Office</div>
+            <div class="ci-value">204, Digital Hub Tower, Connaught Place, New Delhi – 110001</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <div class="ci-label">Call Us</div>
+            <div class="ci-value">+91 98765 43210</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="ci-label">Email Us</div>
+            <div class="ci-value">hello@mvdigitalagency.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2026 MVDigitalAgency. All rights reserved. Made with <span>♥</span> in India. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- SERVICES (added) -->
+<section id="services">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-badge">What We Do</div>
+      <h2 class="section-title">Our <span class="gradient-text">Digital Marketing Services</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <a href="seo.html" class="service-card" style="text-decoration:none;color:inherit;display:block;">
+          <div class="service-icon si-blue"><i class="fas fa-search"></i></div>
+          <div class="service-name">Search Engine Optimization</div>
+          <div class="service-desc">Dominate Google rankings with our white-hat SEO strategies, technical audits, and content optimization.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="80">
+        <a href="ads.html" class="service-card" style="text-decoration:none;color:inherit;display:block;">
+          <div class="service-icon si-purple"><i class="fab fa-google"></i></div>
+          <div class="service-name">Google & Meta Ads (PPC)</div>
+          <div class="service-desc">High-converting pay-per-click campaigns that maximize your ad spend and bring qualified leads instantly.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <a href="social-media-marketing.html" class="service-card" style="text-decoration:none;color:inherit;display:block;">
+          <div class="service-icon si-cyan"><i class="fas fa-hashtag"></i></div>
+          <div class="service-name">Social Media Marketing</div>
+          <div class="service-desc">Build a loyal community and engage your audience with strategic content across all social platforms.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <a href="website-development.html" class="service-card" style="text-decoration:none;color:inherit;display:block;">
+          <div class="service-icon si-green"><i class="fas fa-laptop-code"></i></div>
+          <div class="service-name">Website Design</div>
+          <div class="service-desc">Stunning, conversion-optimized websites that captivate visitors and turn clicks into customers.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <div class="service-card">
+          <div class="service-icon si-blue"><i class="fas fa-paint-brush"></i></div>
+          <div class="service-name">Graphic Design</div>
+          <div class="service-desc">Creative visuals that communicate your brand story — from logos to marketing collateral and social graphics.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="240">
+        <div class="service-card">
+          <div class="service-icon si-purple"><i class="fas fa-pen-nib"></i></div>
+          <div class="service-name">Content Marketing</div>
+          <div class="service-desc">SEO-rich, engaging content that builds authority, attracts organic traffic, and nurtures leads through every funnel stage.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-card">
+          <div class="service-icon si-cyan"><i class="fas fa-envelope"></i></div>
+          <div class="service-name">Email Marketing</div>
+          <div class="service-desc">Automated, personalized email sequences that nurture prospects, retain customers, and drive repeat revenue.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <div class="service-card">
+          <div class="service-icon si-green"><i class="fas fa-video"></i></div>
+          <div class="service-name">Video Editing</div>
+          <div class="service-desc">Professional video production and editing for ads, reels, explainers, and corporate videos that capture attention.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/919876543210?text=Hello%21%0AName%3A%0AService%3A%0AMobile%20No%3A" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+  // LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 650);
+  });
+
+  // AOS INIT
+  AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+
+  // NAVBAR SCROLL
+  const navbar = document.getElementById('navbar');
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+    if (window.scrollY > 400) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  });
+
+  // MOBILE MENU
+  let menuOpen = false;
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    const menu = document.getElementById('mobileMenu');
+    menu.style.maxHeight = menuOpen ? '500px' : '0';
+  }
+  function closeMenu() {
+    menuOpen = false;
+    document.getElementById('mobileMenu').style.maxHeight = '0';
+  }
+
+  // PARTICLES
+  function createParticles() {
+    const container = document.getElementById('particles');
+    const colors = ['#2563EB','#7C3AED','#06B6D4'];
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 5 + 2;
+      p.style.cssText = `
+        width:${size}px;height:${size}px;
+        left:${Math.random()*100}%;
+        background:${colors[Math.floor(Math.random()*colors.length)]};
+        animation-duration:${Math.random()*12+8}s;
+        animation-delay:${Math.random()*8}s;
+      `;
+      container.appendChild(p);
+    }
+  }
+  createParticles();
+
+  // BLOG FILTERING
+  let currentCategory = 'all';
+  function setCategory(button) {
+    document.querySelectorAll('.cat-pill').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    currentCategory = button.dataset.filter;
+    filterPosts();
+  }
+
+  function filterPosts() {
+    const query = document.getElementById('blogSearch').value.toLowerCase().trim();
+    const posts = document.querySelectorAll('.blog-post');
+    posts.forEach(post => {
+      const matchesCategory = currentCategory === 'all' || post.dataset.category === currentCategory;
+      const haystack = (post.dataset.title + ' ' + post.innerText).toLowerCase();
+      const matchesSearch = !query || haystack.includes(query);
+      post.style.display = matchesCategory && matchesSearch ? '' : 'none';
+    });
+  }
+
+  function showNewsletterMessage() {
+    const msg = document.getElementById('newsletterMsg');
+    msg.style.display = 'block';
+    document.getElementById('newsletterEmail').value = '';
+    setTimeout(() => msg.style.display = 'none', 4500);
+  }
+</script>
+</body>
+</html>

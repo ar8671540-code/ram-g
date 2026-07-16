@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact MVDigitalAgency — Get a free consultation and let's grow your business together." />
+  <title>Contact Us | MVDigitalAgency</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- AOS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2563EB;
+      --secondary: #7C3AED;
+      --accent: #06B6D4;
+      --bg: #0F172A;
+      --card: #1E293B;
+      --text: #FFFFFF;
+      --text-muted: #CBD5E1;
+      --gradient: linear-gradient(135deg, #2563EB, #7C3AED);
+      --gradient-2: linear-gradient(135deg, #7C3AED, #06B6D4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; transition: opacity .6s ease, visibility .6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-ring {
+      width: 70px; height: 70px;
+      border: 4px solid rgba(37,99,235,.2);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== NAVBAR ===== */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 18px 0;
+      transition: all .4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(15,23,42,.95);
+      backdrop-filter: blur(20px);
+      padding: 12px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,.4);
+      border-bottom: 1px solid rgba(37,99,235,.15);
+    }
+    .navbar-brand {
+      font-size: 1.5rem; font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; text-decoration: none;
+    }
+    .navbar-logo { height: 100px; width: 240px; }
+    .nav-link {
+      color: var(--text-muted) !important; font-weight: 500;
+      font-size: .9rem; transition: color .3s; position: relative; padding: 6px 14px !important;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; right: 50%;
+      height: 2px; background: var(--gradient);
+      transition: left .3s, right .3s;
+    }
+    .nav-link:hover::after, .nav-link.active::after { left: 14px; right: 14px; }
+    .nav-link:hover { color: var(--text) !important; }
+    .btn-nav {
+      background: var(--gradient); color: #fff !important;
+      border-radius: 50px; padding: 8px 22px !important;
+      font-weight: 600; font-size: .85rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,.5); }
+    .navbar-toggler { border: none; outline: none; }
+    .hamburger { width: 28px; display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+
+    /* ===== MEGA MENU (Services) ===== */
+    .nav-item.dropdown.position-static { position: static; }
+    .dropdown-menu.mega-menu {
+      left: 50% !important;
+      top: 100% !important;
+      transform: translateX(-50%) !important;
+      width: 920px; border-radius: 12px;
+      background: linear-gradient(180deg, rgba(15,23,42,.98), rgba(15,23,42,.95));
+      border: 1px solid rgba(37,99,235,.08); padding: 18px; box-shadow: 0 20px 60px rgba(2,6,23,.6);
+      transition: opacity .18s ease, transform .18s ease; visibility: hidden; opacity: 0;
+      pointer-events: none; z-index: 1200;
+    }
+    /* keep menu visible when hovering nav-item OR the menu itself (prevents flicker/gap) */
+    .nav-item.dropdown:hover > .dropdown-menu.mega-menu,
+    .nav-item.dropdown .dropdown-menu.mega-menu:hover {
+      visibility: visible; opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(6px);
+      display: block;
+    }
+    .dropdown-menu.mega-menu .mega-title { color: var(--accent); font-weight: 800; margin-bottom: 10px; }
+    .dropdown-menu.mega-menu .dropdown-item { color: var(--text-muted); padding: 6px 8px; border-radius: 8px; }
+    .dropdown-menu.mega-menu .dropdown-item:hover { background: rgba(37,99,235,.06); color: var(--text); }
+    .dropdown-menu.mega-menu a { text-decoration: none; }
+    @media (max-width: 991px) { .dropdown-menu.mega-menu { position: static; width: 100%; transform: none; padding: 12px 10px; visibility: visible; opacity: 1; pointer-events: auto; } }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary-custom {
+      background: var(--gradient); color: #fff; border: none;
+      border-radius: 50px; padding: 14px 32px; font-weight: 600;
+      font-size: 1rem; cursor: pointer; transition: all .3s;
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; position: relative; overflow: hidden;
+    }
+    .btn-primary-custom::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, #7C3AED, #2563EB);
+      opacity: 0; transition: opacity .3s;
+    }
+    .btn-primary-custom:hover::before { opacity: 1; }
+    .btn-primary-custom:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(37,99,235,.5); color: #fff; }
+    .btn-primary-custom span, .btn-primary-custom i { position: relative; z-index: 1; }
+
+    .btn-outline-custom {
+      background: transparent; color: var(--text); border: 2px solid rgba(37,99,235,.6);
+      border-radius: 50px; padding: 12px 30px; font-weight: 600;
+      font-size: 1rem; cursor: pointer; transition: all .3s;
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .btn-outline-custom:hover {
+      background: var(--gradient); border-color: transparent;
+      transform: translateY(-3px); color: #fff;
+      box-shadow: 0 12px 35px rgba(37,99,235,.4);
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-badge {
+      display: inline-block; background: rgba(37,99,235,.15);
+      border: 1px solid rgba(37,99,235,.3); color: var(--accent);
+      padding: 6px 18px; border-radius: 50px; font-size: .8rem;
+      font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-title .gradient-text {
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-desc { color: var(--text-muted); font-size: 1.05rem; max-width: 580px; margin: 0 auto; line-height: 1.8; }
+
+    /* ===== PAGE HERO ===== */
+    #page-hero {
+      padding: 160px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,.2) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(124,58,237,.2) 0%, transparent 60%),
+                  radial-gradient(ellipse at 60% 80%, rgba(6,182,212,.1) 0%, transparent 60%),
+                  var(--bg);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: .07;
+      background-image: linear-gradient(rgba(37,99,235,.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(37,99,235,.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .breadcrumb-custom {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .85rem; color: var(--text-muted); margin-bottom: 20px;
+    }
+    .breadcrumb-custom a { color: var(--accent); text-decoration: none; }
+    .breadcrumb-custom a:hover { text-decoration: underline; }
+    .breadcrumb-custom i { font-size: .7rem; }
+    .page-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(37,99,235,.1); border: 1px solid rgba(37,99,235,.3);
+      color: var(--accent); padding: 8px 20px; border-radius: 50px;
+      font-size: .85rem; font-weight: 600; margin-bottom: 24px;
+    }
+    .page-hero-eyebrow .dot {
+      width: 8px; height: 8px; background: var(--accent);
+      border-radius: 50%; animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(6,182,212,.5); }
+      50% { box-shadow: 0 0 0 8px rgba(6,182,212,0); }
+    }
+
+    /* ===== QUICK CONTACT CARDS ===== */
+    #quick-contact { padding: 60px 0; background: rgba(30,41,59,.3); }
+    .quick-card {
+      background: rgba(30,41,59,.7); border: 1px solid rgba(37,99,235,.12);
+      border-radius: 20px; padding: 32px 24px; text-align: center;
+      transition: all .4s; backdrop-filter: blur(10px); height: 100%;
+      position: relative; overflow: hidden;
+    }
+    .quick-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gradient); opacity: 0; transition: opacity .4s; z-index: 0;
+    }
+    .quick-card:hover::before { opacity: .06; }
+    .quick-card:hover { transform: translateY(-6px); border-color: rgba(37,99,235,.35); box-shadow: 0 20px 60px rgba(37,99,235,.15); }
+    .quick-card > * { position: relative; z-index: 1; }
+    .qc-icon {
+      width: 64px; height: 64px; border-radius: 50%; background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin: 0 auto 18px;
+      box-shadow: 0 8px 25px rgba(37,99,235,.35);
+    }
+    .qc-title { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+    .qc-value { font-size: .9rem; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+    .qc-sub { font-size: .8rem; color: var(--text-muted); }
+    .qc-action {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px; color: var(--text-muted); font-size: .82rem;
+      font-weight: 500; text-decoration: none; transition: color .3s;
+    }
+    .qc-action:hover { color: var(--accent); }
+
+    /* ===== MAIN CONTACT SECTION ===== */
+    #contact-main { padding: 100px 0; }
+
+    /* Contact Info Panel */
+    .contact-info-panel {
+      background: linear-gradient(135deg, rgba(37,99,235,.15), rgba(124,58,237,.1));
+      border: 1px solid rgba(37,99,235,.2);
+      border-radius: 24px; padding: 44px 36px;
+      backdrop-filter: blur(10px); height: 100%;
+      position: relative; overflow: hidden;
+    }
+    .contact-info-panel::after {
+      content: ''; position: absolute;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,.15), transparent 70%);
+      bottom: -100px; right: -100px;
+      pointer-events: none;
+    }
+    .cip-heading { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+    .cip-sub { font-size: .88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 36px; }
+    .cip-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(37,99,235,.08);
+    }
+    .cip-item:last-of-type { border-bottom: none; }
+    .cip-icon-wrap {
+      width: 46px; height: 46px; flex-shrink: 0;
+      border-radius: 12px; background: rgba(37,99,235,.15);
+      border: 1px solid rgba(37,99,235,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--accent);
+      transition: all .3s;
+    }
+    .cip-item:hover .cip-icon-wrap { background: var(--gradient); border-color: transparent; color: #fff; }
+    .cip-label { font-size: .75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .cip-value { font-size: .95rem; font-weight: 600; color: var(--text); }
+    .cip-value a { color: var(--text); text-decoration: none; transition: color .3s; }
+    .cip-value a:hover { color: var(--accent); }
+
+    /* Social Links */
+    .cip-socials { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+    .cip-social-link {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(37,99,235,.15); border: 1px solid rgba(37,99,235,.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: .9rem; transition: all .3s;
+      text-decoration: none;
+    }
+    .cip-social-link:hover { background: var(--gradient); border-color: transparent; color: #fff; transform: translateY(-3px); }
+
+    /* Availability badge */
+    .availability-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3);
+      color: #34D399; padding: 8px 16px; border-radius: 50px;
+      font-size: .8rem; font-weight: 600; margin-top: 24px;
+    }
+    .availability-badge .dot {
+      width: 8px; height: 8px; background: #34D399;
+      border-radius: 50%; animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,.5); }
+      50% { box-shadow: 0 0 0 6px rgba(52,211,153,0); }
+    }
+
+    /* ===== CONTACT FORM ===== */
+    .contact-form-panel {
+      background: rgba(30,41,59,.7); border: 1px solid rgba(37,99,235,.12);
+      border-radius: 24px; padding: 44px 40px;
+      backdrop-filter: blur(10px);
+    }
+    .cf-heading { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+    .cf-sub { font-size: .88rem; color: var(--text-muted); margin-bottom: 32px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block; font-size: .82rem; font-weight: 600;
+      color: var(--text-muted); margin-bottom: 8px; letter-spacing: .3px;
+    }
+    .form-control-custom {
+      width: 100%; background: rgba(15,23,42,.7);
+      border: 1px solid rgba(37,99,235,.2); border-radius: 12px;
+      padding: 14px 18px; color: var(--text); font-family: 'Poppins', sans-serif;
+      font-size: .9rem; outline: none; transition: all .3s;
+      appearance: none;
+    }
+    .form-control-custom:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+    .form-control-custom.error { border-color: #EF4444; box-shadow: 0 0 0 3px rgba(239,68,68,.1); }
+    .form-control-custom::placeholder { color: rgba(203,213,225,.4); }
+    textarea.form-control-custom { resize: vertical; min-height: 140px; }
+    select.form-control-custom {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center;
+      padding-right: 44px; cursor: pointer;
+    }
+    select.form-control-custom option { background: #1E293B; }
+    .form-error { color: #EF4444; font-size: .78rem; margin-top: 5px; }
+    .form-success {
+      display: none; background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3);
+      color: #34D399; border-radius: 12px; padding: 14px 18px;
+      font-size: .9rem; font-weight: 500; margin-top: 16px; text-align: center;
+    }
+
+    /* Budget radio pills */
+    .budget-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+    .budget-pill input { display: none; }
+    .budget-pill label {
+      background: rgba(15,23,42,.7); border: 1px solid rgba(37,99,235,.2);
+      border-radius: 50px; padding: 8px 18px; font-size: .82rem;
+      font-weight: 500; color: var(--text-muted); cursor: pointer;
+      transition: all .3s; white-space: nowrap;
+    }
+    .budget-pill input:checked + label {
+      background: var(--gradient); border-color: transparent;
+      color: #fff; box-shadow: 0 4px 15px rgba(37,99,235,.4);
+    }
+    .budget-pill label:hover { border-color: rgba(37,99,235,.5); color: var(--text); }
+
+    /* ===== MAP SECTION ===== */
+    #map-section { padding: 80px 0; background: rgba(30,41,59,.3); }
+    .map-wrap {
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(37,99,235,.15);
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+    .map-wrap iframe { display: block; width: 100%; height: 420px; filter: grayscale(20%) invert(90%) hue-rotate(180deg); }
+
+    /* ===== FAQ SECTION ===== */
+    #faq { padding: 80px 0; }
+    .faq-item {
+      background: rgba(30,41,59,.6); border: 1px solid rgba(37,99,235,.1);
+      border-radius: 14px; margin-bottom: 14px; overflow: hidden;
+      transition: border-color .3s;
+    }
+    .faq-item.open { border-color: rgba(37,99,235,.35); }
+    .faq-btn {
+      width: 100%; background: none; border: none; padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text); font-family: 'Poppins', sans-serif;
+      font-size: .95rem; font-weight: 600; cursor: pointer; text-align: left; gap: 16px;
+    }
+    .faq-icon {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(37,99,235,.15); display: flex; align-items: center;
+      justify-content: center; color: var(--primary); font-size: .8rem;
+      transition: all .3s;
+    }
+    .faq-item.open .faq-icon { background: var(--gradient); color: #fff; transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    .faq-answer.open { max-height: 300px; }
+    .faq-answer p { padding: 0 24px 20px; color: var(--text-muted); font-size: .88rem; line-height: 1.8; }
+
+    /* ===== CTA STRIP ===== */
+    #cta-strip {
+      padding: 80px 0;
+      background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(124,58,237,.1));
+      border-top: 1px solid rgba(37,99,235,.1);
+      border-bottom: 1px solid rgba(37,99,235,.1);
+    }
+    .cta-strip-inner { text-align: center; }
+    .cta-strip-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 16px; }
+    .cta-strip-sub { color: var(--text-muted); font-size: 1rem; max-width: 520px; margin: 0 auto 32px; line-height: 1.8; }
+    .cta-strip-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: rgba(15,23,42,.98); padding: 70px 0 0;
+      border-top: 1px solid rgba(37,99,235,.1);
+    }
+    .footer-brand {
+      font-size: 1.5rem; font-weight: 800; margin-bottom: 16px;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .footer-desc { font-size: .87rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(37,99,235,.1); border: 1px solid rgba(37,99,235,.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: .85rem; transition: all .3s; text-decoration: none;
+    }
+    .footer-social a:hover { background: var(--gradient); border-color: transparent; color: #fff; transform: translateY(-3px); }
+    .footer-heading { font-weight: 700; font-size: .95rem; margin-bottom: 18px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      color: var(--text-muted); text-decoration: none; font-size: .87rem;
+      transition: color .3s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .footer-links a::before { content: '→'; font-size: .8rem; color: var(--primary); opacity: 0; transition: opacity .3s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-links a:hover::before { opacity: 1; }
+    .contact-info-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
+    .ci-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(37,99,235,.15); display: flex; align-items: center;
+      justify-content: center; color: var(--accent); font-size: .9rem; flex-shrink: 0;
+    }
+    .ci-label { font-size: .75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+    .ci-value { font-size: .87rem; color: var(--text); font-weight: 500; }
+    .footer-bottom {
+      border-top: 1px solid rgba(37,99,235,.1);
+      padding: 20px 0; margin-top: 50px; text-align: center;
+    }
+    .footer-bottom p { color: var(--text-muted); font-size: .82rem; }
+    .footer-bottom span { color: #EF4444; }
+    .footer-bottom a { color: var(--text-muted); text-decoration: none; transition: color .3s; }
+    .footer-bottom a:hover { color: var(--accent); }
+
+    /* ===== WHATSAPP & BACK TO TOP ===== */
+    .whatsapp-btn {
+      position: fixed; bottom: 30px; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.6rem; text-decoration: none;
+      box-shadow: 0 6px 25px rgba(37,211,102,.4); transition: all .3s;
+    }
+    .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 10px 35px rgba(37,211,102,.6); color: #fff; }
+    #backToTop {
+      position: fixed; bottom: 96px; right: 24px; z-index: 999;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--gradient); border: none; color: #fff;
+      font-size: .9rem; cursor: pointer; opacity: 0; visibility: hidden;
+      transition: all .3s; box-shadow: 0 4px 15px rgba(37,99,235,.4);
+    }
+    #backToTop.visible { opacity: 1; visibility: visible; }
+    #backToTop:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37,99,235,.6); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 991px) {
+      .contact-form-panel { padding: 32px 24px; }
+      .contact-info-panel { padding: 32px 24px; }
+    }
+    @media (max-width: 767px) {
+      #page-hero { padding: 130px 0 60px; }
+      .quick-card { padding: 24px 20px; }
+      .budget-pills { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div>
+    <div class="loader-ring"></div>
+    <p style="text-align:center;margin-top:14px;font-size:.8rem;color:var(--text-muted);">Loading...</p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#hero" class="navbar-brand"><img src="img/logo.png" style="height: 100px; width: 240px;" class="navbar-logo"></a>
+      <div class="d-none d-lg-flex align-items-center gap-1">
+          <a href="index.html" class="nav-link">Home</a>
+        <a href="about-us.html" class="nav-link">About</a>
+
+        <div class="nav-item dropdown position-static">
+          <a class="nav-link dropdown-toggle" href="services.html" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Services
+          </a>
+          <div class="dropdown-menu dropdown-menu-dark mega-menu p-4" aria-labelledby="servicesDropdown">
+            <div class="container">
+              <div class="row gx-4">
+                <div class="col-md-4">
+                  <h6 class="mega-title">Paid Media</h6>
+                  <a class="dropdown-item" href="ads.html">Google Ads (PPC)</a>
+                  <a class="dropdown-item" href="meta-ads.html">Meta Ads</a>
+                  <a class="dropdown-item" href="video-editing.html">Video Editing</a>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="mega-title">Organic & Content</h6>
+                  <a class="dropdown-item" href="seo.html">Search Engine Optimization (SEO)</a>
+                  <a class="dropdown-item" href="local-seo.html">Local SEO</a>
+                  <a class="dropdown-item" href="content-marketing.html">Content Marketing</a>
+                  <a class="dropdown-item" href="email-marketing.html">Email Marketing</a>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="mega-title">Creative & Web</h6>
+                  <a class="dropdown-item" href="website-design.html">Website Design</a>
+                  <a class="dropdown-item" href="website-development.html">Website Development</a>
+                  <a class="dropdown-item" href="graphic-design.html">Graphic Design</a>
+                  <a class="dropdown-item" href="branding.html">Branding</a>
+                  <a class="dropdown-item" href="full-package.html">Full Package</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        
+        <a href="mailto:hello@mvdigitalagency.com" class="nav-link btn-nav ms-2">Get Free Consultant</a>
+      </div>
+      
+    </div>
+    <!-- Mobile Menu -->
+      <div id="mobileMenu" style="max-height:0;overflow:hidden;transition:max-height .4s ease;">
+      <div style="padding:20px 0;display:flex;flex-direction:column;gap:4px;border-top:1px solid rgba(37,99,235,.1);margin-top:12px;">
+        <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+        <a href="about-us.html" class="nav-link" onclick="closeMenu()">About</a>
+
+        <div class="nav-link" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;" onclick="toggleMobileServices()">
+          <span>Services</span>
+          <i class="fas fa-chevron-down" id="mobileServicesIcon"></i>
+        </div>
+        <div id="mobileServices" style="display:none;padding-left:12px;">
+          <a href="seo.html" class="nav-link" onclick="closeMenu()">Search Engine Optimization (SEO)</a>
+          <a href="ads.html" class="nav-link" onclick="closeMenu()">Google Ads (PPC)</a>
+          <a href="social-media-marketing.html" class="nav-link" onclick="closeMenu()">Social Media Marketing</a>
+          <a href="meta-ads.html" class="nav-link" onclick="closeMenu()">Meta Ads</a>
+          <a href="website-design.html" class="nav-link" onclick="closeMenu()">Website Design</a>
+          <a href="website-development.html" class="nav-link" onclick="closeMenu()">Website Development</a>
+          <a href="graphic-design.html" class="nav-link" onclick="closeMenu()">Graphic Design</a>
+          <a href="content-marketing.html" class="nav-link" onclick="closeMenu()">Content Marketing</a>
+          <a href="email-marketing.html" class="nav-link" onclick="closeMenu()">Email Marketing</a>
+          <a href="branding.html" class="nav-link" onclick="closeMenu()">Branding</a>
+          <a href="video-editing.html" class="nav-link" onclick="closeMenu()">Video Editing</a>
+          <a href="local-seo.html" class="nav-link" onclick="closeMenu()">Local SEO</a>
+          <a href="full-package.html" class="nav-link" onclick="closeMenu()">Full Package</a>
+        </div>
+
+        <a href="blog.html" class="nav-link" onclick="closeMenu()">Blog</a>
+        <a href="contact-us.html" class="nav-link" onclick="closeMenu()">Contact Us</a>
+        <a href="mailto:hello@mvdigitalagency.com" class="btn-primary-custom mt-2" onclick="closeMenu()" style="text-align:center;justify-content:center;"><span>Get Free Consultant</span></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section id="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="text-center" data-aos="fade-up">
+      <div class="breadcrumb-custom justify-content-center">
+        <a href="mvdigitalagency.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Contact Us</span>
+      </div>
+      <div class="page-hero-eyebrow">
+        <span class="dot"></span>
+        Let's Work Together
+      </div>
+      <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.4rem);">
+        Ready to <span class="gradient-text">Grow Your Business?</span>
+      </h1>
+      <p class="section-desc mx-auto" style="max-width:620px;">
+        Tell us about your project and get a free consultation + digital audit. Our team responds within 24 hours.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CONTACT CARDS -->
+<section id="quick-contact">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="quick-card">
+          <div class="qc-icon"><i class="fas fa-phone"></i></div>
+          <div class="qc-title">Call Us</div>
+          <div class="qc-value">+91 98765 43210</div>
+          <div class="qc-sub">Mon–Sat, 9 AM – 7 PM IST</div>
+          <a href="tel:+919876543210" class="qc-action">Call Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="80">
+        <div class="quick-card">
+          <div class="qc-icon"><i class="fas fa-envelope"></i></div>
+          <div class="qc-title">Email Us</div>
+          <div class="qc-value">hello@mvdigitalagency.com</div>
+          <div class="qc-sub">We reply within 24 hours</div>
+          <a href="mailto:hello@mvdigitalagency.com" class="qc-action">Send Email <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <div class="quick-card">
+          <div class="qc-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="qc-title">WhatsApp</div>
+          <div class="qc-value">+91 98765 43210</div>
+          <div class="qc-sub">Instant messaging support</div>
+          <a href="https://wa.me/919876543210?text=Hello%21%0AName%3A%0AService%3A%0AMobile%20No%3A" target="_blank" class="qc-action">Chat Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="240">
+        <div class="quick-card">
+          <div class="qc-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="qc-title">Visit Us</div>
+          <div class="qc-value">Connaught Place, New Delhi</div>
+          <div class="qc-sub">204, Digital Hub Tower – 110001</div>
+          <a href="#map-section" class="qc-action">View Map <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTACT SECTION -->
+<section id="contact-main">
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- Info Panel -->
+      <div class="col-lg-4" data-aos="fade-right">
+        <div class="contact-info-panel">
+          <div class="cip-heading">Get in Touch</div>
+          <p class="cip-sub">We're here to help you achieve your digital goals. Reach out through any channel and our experts will respond promptly.</p>
+
+          <div class="cip-item">
+            <div class="cip-icon-wrap"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="cip-label">Phone</div>
+              <div class="cip-value"><a href="tel:+919876543210">+91 98765 43210</a></div>
+            </div>
+          </div>
+          <div class="cip-item">
+            <div class="cip-icon-wrap"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="cip-label">Email</div>
+              <div class="cip-value"><a href="mailto:hello@mvdigitalagency.com">hello@mvdigitalagency.com</a></div>
+            </div>
+          </div>
+          <div class="cip-item">
+            <div class="cip-icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="cip-label">Office</div>
+              <div class="cip-value">204, Digital Hub Tower, Connaught Place, New Delhi – 110001</div>
+            </div>
+          </div>
+          <div class="cip-item">
+            <div class="cip-icon-wrap"><i class="fas fa-clock"></i></div>
+            <div>
+              <div class="cip-label">Business Hours</div>
+              <div class="cip-value">Mon–Sat: 9:00 AM – 7:00 PM IST</div>
+            </div>
+          </div>
+
+          <div class="availability-badge">
+            <span class="dot"></span>
+            We're available right now
+          </div>
+
+          <div class="cip-socials">
+            <a href="#" class="cip-social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="cip-social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="cip-social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="cip-social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="cip-social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-lg-8" data-aos="fade-left">
+        <div class="contact-form-panel">
+          <div class="cf-heading">Send Us a Message</div>
+          <p class="cf-sub">Fill in your details and we'll get back to you with a free audit + personalized strategy.</p>
+
+          <form onsubmit="handleSubmit(event)" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Full Name *</label>
+                  <input type="text" class="form-control-custom" id="fname" placeholder="Your full name" />
+                  <div class="form-error" id="fnameErr"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Email Address *</label>
+                  <input type="email" class="form-control-custom" id="femail" placeholder="your@email.com" />
+                  <div class="form-error" id="femailErr"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" class="form-control-custom" id="fphone" placeholder="+91 XXXXX XXXXX" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Company / Website</label>
+                  <input type="text" class="form-control-custom" id="fcompany" placeholder="Your company or website URL" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Service Required *</label>
+                  <select class="form-control-custom" id="fservice">
+                    <option value="">Select a service</option>
+                    <option>Search Engine Optimization (SEO)</option>
+                    <option>Google Ads (PPC)</option>
+                    <option>Social Media Marketing</option>
+                    <option>Meta Ads</option>
+                    <option>Website Design</option>
+                    <option>Website Development</option>
+                    <option>Graphic Design</option>
+                    <option>Content Marketing</option>
+                    <option>Email Marketing</option>
+                    <option>Branding</option>
+                    <option>Video Editing</option>
+                    <option>Local SEO</option>
+                    <option>Full Package</option>
+                  </select>
+                  <div class="form-error" id="fserviceErr"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>How Did You Hear About Us?</label>
+                  <select class="form-control-custom" id="fsource">
+                    <option value="">Select an option</option>
+                    <option>Google Search</option>
+                    <option>Social Media</option>
+                    <option>Friend / Referral</option>
+                    <option>YouTube</option>
+                    <option>Online Ad</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Monthly Budget</label>
+                  <div class="budget-pills">
+                    <div class="budget-pill">
+                      <input type="radio" name="budget" id="b1" value="Under ₹10K" />
+                      <label for="b1">Under ₹10K</label>
+                    </div>
+                    <div class="budget-pill">
+                      <input type="radio" name="budget" id="b2" value="₹10K – ₹25K" />
+                      <label for="b2">₹10K – ₹25K</label>
+                    </div>
+                    <div class="budget-pill">
+                      <input type="radio" name="budget" id="b3" value="₹25K – ₹50K" />
+                      <label for="b3">₹25K – ₹50K</label>
+                    </div>
+                    <div class="budget-pill">
+                      <input type="radio" name="budget" id="b4" value="₹50K+" />
+                      <label for="b4">₹50K+</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Your Message *</label>
+                  <textarea class="form-control-custom" id="fmessage" placeholder="Tell us about your business, goals, and what you're looking to achieve..."></textarea>
+                  <div class="form-error" id="fmessageErr"></div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-primary-custom" style="width:100%;justify-content:center;">
+                  <span>Send Message & Get Free Audit</span><i class="fas fa-paper-plane"></i>
+                </button>
+                <div class="form-success" id="formSuccess">
+                  <i class="fas fa-check-circle me-2"></i>Your message has been sent! We'll get back to you within 24 hours.
+                </div>
+                <p style="text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:12px;">
+                  <i class="fas fa-lock me-1" style="color:var(--accent);"></i>
+                  Your information is 100% secure and will never be shared.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP SECTION -->
+<section id="map-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-badge">Find Us</div>
+      <h2 class="section-title">Our <span class="gradient-text">Office Location</span></h2>
+      <p class="section-desc">204, Digital Hub Tower, Connaught Place, New Delhi – 110001</p>
+    </div>
+    <div class="map-wrap" data-aos="fade-up" data-aos-delay="100">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.011!2d77.2195!3d28.6335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b741d057%3A0xcdee88e47393c3f1!2sConnaught%20Place%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="MVDigitalAgency Office Location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section id="faq">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-badge">FAQ</div>
+      <h2 class="section-title">Common <span class="gradient-text">Questions</span></h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="0">
+          <button class="faq-btn" onclick="toggleFAQ(this)">
+            How quickly will you respond to my inquiry?
+            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer">
+            <p>We respond to all inquiries within 24 business hours. For urgent matters, feel free to call us directly or message us on WhatsApp for a faster response.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="60">
+          <button class="faq-btn" onclick="toggleFAQ(this)">
+            What is included in the free consultation?
+            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer">
+            <p>Our free consultation includes a complete digital audit of your current online presence, competitor analysis, identification of growth opportunities, and a customized strategy recommendation — all at no cost.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="120">
+          <button class="faq-btn" onclick="toggleFAQ(this)">
+            Do you work with small businesses and startups?
+            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely! We work with businesses of all sizes — from startups to large enterprises. We offer flexible packages designed to fit different budgets and goals, ensuring every client gets maximum value.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="180">
+          <button class="faq-btn" onclick="toggleFAQ(this)">
+            How long does it take to see results?
+            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer">
+            <p>Results vary by service. PPC campaigns can deliver immediate leads, while SEO typically shows measurable progress in 3–6 months. Social media growth is usually visible within 30–60 days. We set realistic timelines and provide transparent monthly reports.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="240">
+          <button class="faq-btn" onclick="toggleFAQ(this)">
+            Can I visit your office for a meeting?
+            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! You're welcome to visit us at 204, Digital Hub Tower, Connaught Place, New Delhi during business hours (Mon–Sat, 9 AM – 7 PM IST). We recommend scheduling an appointment in advance so we can prepare for your visit.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section id="cta-strip">
+  <div class="container">
+    <div class="cta-strip-inner" data-aos="fade-up">
+      <h2 class="cta-strip-title">Still Have Questions? <span class="gradient-text">Let's Talk.</span></h2>
+      <p class="cta-strip-sub">Book a free 30-minute strategy call with our experts and discover how we can help you grow.</p>
+      <div class="cta-strip-btns">
+        <a href="https://wa.me/919876543210?text=Hello%21%0AName%3A%0AService%3A%0AMobile%20No%3A" target="_blank" class="btn-primary-custom">
+          <span>Chat on WhatsApp</span><i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+919876543210" class="btn-outline-custom">
+          <i class="fas fa-phone"></i><span>Call Us Now</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">mvdigitalagency</div>
+        <div class="footer-desc">We help businesses grow with powerful, data-driven digital marketing strategies. Let's build something amazing together.</div>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="mvdigitalagency.html#about">About Us</a></li>
+          <li><a href="mvdigitalagency.html#services">Services</a></li>
+          <li><a href="mvdigitalagency.html#portfolio">Portfolio</a></li>
+          <li><a href="mvdigitalagency.html#team">Our Team</a></li>
+          <li><a href="mvdigitalagency.html#pricing">Pricing</a></li>
+          <li><a href="mailto:hello@mvdigitalagency.com">Email Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <div class="footer-heading">Our Services</div>
+        <ul class="footer-links">
+          <li><a href="mvdigitalagency.html#services">SEO Optimization</a></li>
+          <li><a href="mvdigitalagency.html#services">Google Ads</a></li>
+          <li><a href="mvdigitalagency.html#services">Social Media</a></li>
+          <li><a href="mvdigitalagency.html#services">Meta Ads</a></li>
+          <li><a href="mvdigitalagency.html#services">Website Design</a></li>
+          <li><a href="mvdigitalagency.html#services">Content Marketing</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3" data-aos="fade-right">
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div class="ci-label">Our Office</div>
+            <div class="ci-value">204, Digital Hub Tower, Connaught Place, New Delhi – 110001</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <div class="ci-label">Call Us</div>
+            <div class="ci-value">+91 98765 43210</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="ci-label">Email Us</div>
+            <div class="ci-value">hello@mvdigitalagency.com</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <div class="ci-label">Business Hours</div>
+            <div class="ci-value">Mon–Sat: 9:00 AM – 7:00 PM IST</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2025 MVDigitalAgency. All rights reserved. Made with <span>♥</span> in India. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- SERVICES (added) -->
+<section id="services">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-badge">What We Do</div>
+      <h2 class="section-title">Our <span class="gradient-text">Digital Marketing Services</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <a href="seo.html" class="service-card" style="text-decoration:none;color:inherit;display:block;">
+          <div class="service-icon si-blue"><i class="fas fa-search"></i></div>
+          <div class="service-name">Search Engine Optimization</div>
+          <div class="service-desc">Dominate Google rankings with our white-hat SEO strategies, technical audits, and content optimization.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="80">
+        <a href="ads.html" class="service-card" style="text-decoration:none;color:inherit;display:block;">
+          <div class="service-icon si-purple"><i class="fab fa-google"></i></div>
+          <div class="service-name">Google & Meta Ads (PPC)</div>
+          <div class="service-desc">High-converting pay-per-click campaigns that maximize your ad spend and bring qualified leads instantly.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <a href="social-media-marketing.html" class="service-card" style="text-decoration:none;color:inherit;display:block;">
+          <div class="service-icon si-cyan"><i class="fas fa-hashtag"></i></div>
+          <div class="service-name">Social Media Marketing</div>
+          <div class="service-desc">Build a loyal community and engage your audience with strategic content across all social platforms.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <a href="website-development.html" class="service-card" style="text-decoration:none;color:inherit;display:block;">
+          <div class="service-icon si-green"><i class="fas fa-laptop-code"></i></div>
+          <div class="service-name">Website Design</div>
+          <div class="service-desc">Stunning, conversion-optimized websites that captivate visitors and turn clicks into customers.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <div class="service-card">
+          <div class="service-icon si-blue"><i class="fas fa-paint-brush"></i></div>
+          <div class="service-name">Graphic Design</div>
+          <div class="service-desc">Creative visuals that communicate your brand story — from logos to marketing collateral and social graphics.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="240">
+        <div class="service-card">
+          <div class="service-icon si-purple"><i class="fas fa-pen-nib"></i></div>
+          <div class="service-name">Content Marketing</div>
+          <div class="service-desc">SEO-rich, engaging content that builds authority, attracts organic traffic, and nurtures leads through every funnel stage.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-card">
+          <div class="service-icon si-cyan"><i class="fas fa-envelope"></i></div>
+          <div class="service-name">Email Marketing</div>
+          <div class="service-desc">Automated, personalized email sequences that nurture prospects, retain customers, and drive repeat revenue.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <div class="service-card">
+          <div class="service-icon si-green"><i class="fas fa-video"></i></div>
+          <div class="service-name">Video Editing</div>
+          <div class="service-desc">Professional video production and editing for ads, reels, explainers, and corporate videos that capture attention.</div>
+          <div class="service-arrow">Learn More <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/919876543210?text=Hello%21%0AName%3A%0AService%3A%0AMobile%20No%3A" class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Back to Top -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+  // LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 800);
+  });
+
+  // AOS INIT
+  AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+
+  // NAVBAR SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // MOBILE MENU
+  let menuOpen = false;
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    document.getElementById('mobileMenu').style.maxHeight = menuOpen ? '500px' : '0';
+  }
+  function closeMenu() {
+    menuOpen = false;
+    document.getElementById('mobileMenu').style.maxHeight = '0';
+  }
+
+  // Mobile Services toggle
+  function toggleMobileServices() {
+    const el = document.getElementById('mobileServices');
+    const icon = document.getElementById('mobileServicesIcon');
+    if (!el) return;
+    const open = el.style.display === 'block';
+    el.style.display = open ? 'none' : 'block';
+    if (icon) icon.classList.toggle('fa-rotate-180', !open);
+  }
+
+  // FAQ ACCORDION
+  function toggleFAQ(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').classList.remove('open');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+  // CONTACT FORM VALIDATION
+  function handleSubmit(e) {
+    e.preventDefault();
+    let valid = true;
+    const fields = [
+      { id: 'fname',    errId: 'fnameErr',    msg: 'Please enter your name.' },
+      { id: 'femail',   errId: 'femailErr',   msg: 'Please enter a valid email.', isEmail: true },
+      { id: 'fservice', errId: 'fserviceErr', msg: 'Please select a service.' },
+      { id: 'fmessage', errId: 'fmessageErr', msg: 'Please enter your message.' }
+    ];
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const errEl = document.getElementById(f.errId);
+      el.classList.remove('error');
+      errEl.textContent = '';
+      const val = el.value.trim();
+      let bad = !val;
+      if (!bad && f.isEmail) bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (bad) { el.classList.add('error'); errEl.textContent = f.msg; valid = false; }
+    });
+    if (valid) {
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+      btn.style.opacity = '.7';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = '<span>Send Message & Get Free Audit</span><i class="fas fa-paper-plane"></i>';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+        document.getElementById('formSuccess').style.display = 'block';
+        e.target.reset();
+        setTimeout(() => document.getElementById('formSuccess').style.display = 'none', 6000);
+      }, 1500);
+    }
+  }
+</script>
+</body>
+</html>
