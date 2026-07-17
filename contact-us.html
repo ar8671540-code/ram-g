@@ -498,7 +498,7 @@
   <div class="container">
     <div class="d-flex align-items-center justify-content-between">
       <a href="#hero" class="navbar-brand"><img src="img/logo.png" style="height: 100px; width: 240px;" class="navbar-logo"></a>
-      <div class="d-none d-lg-flex align-items-center gap-1">
+      <div class="d-none d-lg-flex align-items-center gap-1 desktop-nav">
           <a href="index.html" class="nav-link">Home</a>
         <a href="about-us.html" class="nav-link">About</a>
 
@@ -540,37 +540,43 @@
         
         <a href="mailto:hello@mvdigitalagency.com" class="nav-link btn-nav ms-2">Get Free Consultant</a>
       </div>
-      
+      <button class="navbar-toggler d-lg-none" type="button" onclick="toggleMenu()" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
     </div>
     <!-- Mobile Menu -->
       <div id="mobileMenu" style="max-height:0;overflow:hidden;transition:max-height .4s ease;">
       <div style="padding:20px 0;display:flex;flex-direction:column;gap:4px;border-top:1px solid rgba(37,99,235,.1);margin-top:12px;">
-        <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
-        <a href="about-us.html" class="nav-link" onclick="closeMenu()">About</a>
+        <a href="index.html" class="mobile-menu-link" onclick="closeMenu()">Home</a>
+        <a href="about-us.html" class="mobile-menu-link" onclick="closeMenu()">About</a>
 
-        <div class="nav-link" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;" onclick="toggleMobileServices()">
+        <div class="mobile-menu-link" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;" onclick="toggleMobileServices()">
           <span>Services</span>
           <i class="fas fa-chevron-down" id="mobileServicesIcon"></i>
         </div>
         <div id="mobileServices" style="display:none;padding-left:12px;">
-          <a href="seo.html" class="nav-link" onclick="closeMenu()">Search Engine Optimization (SEO)</a>
-          <a href="ads.html" class="nav-link" onclick="closeMenu()">Google Ads (PPC)</a>
-          <a href="social-media-marketing.html" class="nav-link" onclick="closeMenu()">Social Media Marketing</a>
-          <a href="meta-ads.html" class="nav-link" onclick="closeMenu()">Meta Ads</a>
-          <a href="website-design.html" class="nav-link" onclick="closeMenu()">Website Design</a>
-          <a href="website-development.html" class="nav-link" onclick="closeMenu()">Website Development</a>
-          <a href="graphic-design.html" class="nav-link" onclick="closeMenu()">Graphic Design</a>
-          <a href="content-marketing.html" class="nav-link" onclick="closeMenu()">Content Marketing</a>
-          <a href="email-marketing.html" class="nav-link" onclick="closeMenu()">Email Marketing</a>
-          <a href="branding.html" class="nav-link" onclick="closeMenu()">Branding</a>
-          <a href="video-editing.html" class="nav-link" onclick="closeMenu()">Video Editing</a>
-          <a href="local-seo.html" class="nav-link" onclick="closeMenu()">Local SEO</a>
-          <a href="full-package.html" class="nav-link" onclick="closeMenu()">Full Package</a>
+          <a href="seo.html" class="mobile-menu-link" onclick="closeMenu()">Search Engine Optimization (SEO)</a>
+          <a href="ads.html" class="mobile-menu-link" onclick="closeMenu()">Google Ads (PPC)</a>
+          <a href="social-media-marketing.html" class="mobile-menu-link" onclick="closeMenu()">Social Media Marketing</a>
+          <a href="meta-ads.html" class="mobile-menu-link" onclick="closeMenu()">Meta Ads</a>
+          <a href="website-design.html" class="mobile-menu-link" onclick="closeMenu()">Website Design</a>
+          <a href="website-development.html" class="mobile-menu-link" onclick="closeMenu()">Website Development</a>
+          <a href="graphic-design.html" class="mobile-menu-link" onclick="closeMenu()">Graphic Design</a>
+          <a href="content-marketing.html" class="mobile-menu-link" onclick="closeMenu()">Content Marketing</a>
+          <a href="email-marketing.html" class="mobile-menu-link" onclick="closeMenu()">Email Marketing</a>
+          <a href="branding.html" class="mobile-menu-link" onclick="closeMenu()">Branding</a>
+          <a href="video-editing.html" class="mobile-menu-link" onclick="closeMenu()">Video Editing</a>
+          <a href="local-seo.html" class="mobile-menu-link" onclick="closeMenu()">Local SEO</a>
+          <a href="full-package.html" class="mobile-menu-link" onclick="closeMenu()">Full Package</a>
         </div>
 
-        <a href="blog.html" class="nav-link" onclick="closeMenu()">Blog</a>
-        <a href="contact-us.html" class="nav-link" onclick="closeMenu()">Contact Us</a>
-        <a href="mailto:hello@mvdigitalagency.com" class="btn-primary-custom mt-2" onclick="closeMenu()" style="text-align:center;justify-content:center;"><span>Get Free Consultant</span></a>
+        <a href="blog.html" class="mobile-menu-link" onclick="closeMenu()">Blog</a>
+        <a href="contact-us.html" class="mobile-menu-link" onclick="closeMenu()">Contact Us</a>
+        <a href="mailto:hello@mvdigitalagency.com" class="btn-primary-custom mt-2 mobile-menu-cta" onclick="closeMenu()"><span>Get Free Consultant</span></a>
       </div>
     </div>
   </div>
@@ -706,7 +712,7 @@
           <div class="cf-heading">Send Us a Message</div>
           <p class="cf-sub">Fill in your details and we'll get back to you with a free audit + personalized strategy.</p>
 
-          <form onsubmit="handleSubmit(event)" novalidate>
+          <form action="https://formspree.io/f/mnjepdgk" method="POST"></form>
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="form-group">
